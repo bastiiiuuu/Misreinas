@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sucursales | Mis Reinas &amp; Botillería Salas</title>
+  <meta name="description" content="Direcciones, horarios y servicios de los tres locales de Mis Reinas y Botillería Salas en Talcahuano y Concepción.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Navegación principal">
+      <a href="index.html" class="navbar__brand">
+        <img src="https://i.postimg.cc/MGhw2NCr/logo.jpg" alt="Escudo Mis Reinas, dos leones sosteniendo una corona" class="navbar__logo">
+        <span>Mis Reinas</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar__menu" id="navMenu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="sucursales.html" class="active">Sucursales</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <h1>Nuestros locales</h1>
+          <p>Tres direcciones en el sector de Los Lobos Viejos y Avenida Los Lobos, cada una con su propio horario y servicios.</p>
+        </div>
+
+        <!--
+          ============================================================
+          INICIO BLOQUE DJANGO: {% for local in locales %}
+          ------------------------------------------------------------
+          En la fase de integración con Django, las 3 tarjetas .branch
+          de abajo se reemplazarán por una sola tarjeta con variables
+          de plantilla dentro de este bucle, por ejemplo:
+
+            <article class="branch{% if forloop.counter|divisibleby:2 %} branch--reverse{% endif %}">
+              <div class="branch__media{% if local.imagenes|length > 1 %} branch__media--double{% endif %}">
+                {% for imagen in local.imagenes %}
+                  <img src="{{ imagen.url }}" alt="{{ imagen.alt_text }}">
+                {% endfor %}
+              </div>
+              <div class="branch__content">
+                <span class="branch__badge">{{ local.categoria }}</span>
+                <h2>{{ local.nombre }}</h2>
+                <p>{{ local.direccion }}</p>
+                <ul class="branch__list">
+                  <li><strong>Horario:</strong> {{ local.horario }}</li>
+                  {% for servicio in local.servicios.all %}
+                    <li>{{ servicio.nombre }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </article>
+
+          El modelo Local (models.py) debería incluir al menos:
+          nombre, direccion, categoria, horario, imagenes (FK/M2M)
+          y servicios (M2M a un modelo Servicio).
+          ============================================================
+        -->
+
+        <article class="branch">
+          <div class="branch__media">
+            <img src="https://i.postimg.cc/vm1yKbNC/primer-M.jpg" alt="Fachada del minimarket y panadería Mis Reinas en Los Delfines">
+          </div>
+          <div class="branch__content">
+            <span class="branch__badge">Panadería</span>
+            <h2>Minimarket / Panadería Mis Reinas</h2>
+            <p>Los Delfines 1850, Los Lobos Viejos, Talcahuano.</p>
+            <ul class="branch__list">
+              <li><strong>Horario:</strong> Lunes a domingo, 08:00 a 22:00 hrs.</li>
+              <li>Panadería diaria: pan amasado y marraqueta recién horneados.</li>
+              <li>Cecinas y fiambres para el día a día.</li>
+              <li>Bebidas frías y confites.</li>
+              <li>Abarrotes generales.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="branch branch--reverse">
+          <div class="branch__media branch__media--double">
+            <img src="https://i.postimg.cc/9f42kCnn/segundo-M2.jpg" alt="Fachada del minimarket Mis Reinas en Los Lobos Viejos">
+            <img src="https://i.postimg.cc/rpvTX3Bj/segundo-M3.jpg" alt="Interior del minimarket con estantes de alimentos y helados">
+          </div>
+          <div class="branch__content">
+            <span class="branch__badge">Abarrotes y mascotas</span>
+            <h2>Minimarket Mis Reinas</h2>
+            <p>Los Lobos Viejos 1838, Talcahuano.</p>
+            <ul class="branch__list">
+              <li><strong>Horario:</strong> Lunes a domingo, 08:30 a 22:00 hrs.</li>
+              <li>Frutas y verduras frescas.</li>
+              <li>Abarrotes generales y bidones de agua purificada.</li>
+              <li>Alimento para mascotas a granel: Whiskas, Master Dog y Pedigree.</li>
+              <li>Helados.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="branch">
+          <div class="branch__media branch__media--double">
+            <img src="https://i.postimg.cc/DwpF58Bn/botilleria2.jpg" alt="Fachada de Botillería Salas en Avenida Los Lobos">
+            <img src="https://i.postimg.cc/P5VhKP28/botilleria.jpg" alt="Mostrador de Botillería Salas con punto CajaVecina">
+          </div>
+          <div class="branch__content">
+            <span class="branch__badge" style="background:var(--color-navy)">Botillería</span>
+            <h2>Botillería Salas</h2>
+            <p>Avenida Los Lobos 813, Concepción / Talcahuano.</p>
+            <ul class="branch__list">
+              <li><strong>Horario:</strong> Lunes a sábado, 10:00 a 23:00 hrs · Domingo, 11:00 a 21:00 hrs.</li>
+              <li>Patente de alcoholes Clase A: cervezas, vinos y destilados.</li>
+              <li>Bebidas heladas.</li>
+              <li>Punto de Atención CajaVecina BancoEstado: giros, pagos y recargas.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- FIN BLOQUE DJANGO: {% endfor %} -->
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>Mis Reinas</h3>
+        <p>Minimarkets y botillería familiar atendiendo el sector de Los Lobos Viejos desde hace años, en Talcahuano y Concepción.</p>
+      </div>
+      <div>
+        <h3>Navegación</h3>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="sucursales.html">Sucursales</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Ubicación</h3>
+        <p>Los Delfines 1850 · Los Lobos Viejos 1838 · Av. Los Lobos 813<br>Talcahuano / Concepción, Chile</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Mis Reinas &amp; Botillería Salas. Proyecto académico de Desarrollo Frontend.</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
