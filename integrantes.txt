@@ -1,0 +1,4 @@
+Evaluación II — Desarrollo Backend con Django
+Integrante: Bastian Acuna
+Equipo individual
+Proyecto: Mis Reinas & Botillería Salas

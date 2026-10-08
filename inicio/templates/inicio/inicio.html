@@ -1,0 +1,170 @@
+{% extends 'inicio/base.html' %}
+{% load static catalogo %}
+{% block title %}Mis Reinas | Minimarkets en Talcahuano{% endblock %}
+{% block description %}Red de minimarkets y botillería familiar en Los Lobos Viejos, Talcahuano: panadería diaria, abarrotes, alimento para mascotas a granel, bebidas y CajaVecina.{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'inicio/css/carrito.css' %}">{% endblock %}
+{% block content %}
+<section class="hero">
+      <div class="container hero__inner">
+        <img src="{% static 'inicio/img/logo.jpg' %}" alt="" class="hero__logo">
+        <p class="hero__eyebrow">Los Lobos Viejos, Talcahuano</p>
+        <h1>El almacén del barrio que conoce a cada vecino por su nombre</h1>
+        <p>Tres locales, una misma familia: pan recién horneado, abarrotes de siempre, alimento para mascotas por kilo y una botillería con patente completa, a pasos de tu casa en Talcahuano y Concepción.</p>
+        <div class="hero__actions">
+          <a href="#catalogo" class="btn btn-primary">Ver catálogo</a>
+          <a href="{% url 'sucursales:sucursales' %}" class="btn btn-outline">Ver nuestras sucursales</a>
+          <a href="{% url 'contacto:contacto' %}" class="btn btn-outline">Escríbenos</a>
+        </div>
+      </div>
+    </section>
+<section class="section section--muted" id="catalogo" aria-labelledby="catalogo-titulo">
+  <div class="container">
+    <div class="section__head">
+      <p class="catalog-eyebrow">Tu minimarket de barrio</p>
+      <h2 id="catalogo-titulo">Arma tu pedido</h2>
+      <p>Elige tus productos y revisa cómo quedaría tu pedido para WhatsApp.</p>
+    </div>
+    <div class="catalog-toolbar">
+      <p class="demo-notice"><strong>Modo demostración.</strong> Precios de referencia para este prototipo. No se realizan compras, reservas ni envíos.</p>
+      <a class="btn btn-primary" href="#carrito">Ver carrito (<span id="cart-count">0</span>)</a>
+    </div>
+    <noscript><p class="demo-notice">Activa JavaScript para probar el carrito. El catálogo y su paginación siguen disponibles.</p></noscript>
+    <div class="catalog-grid">
+      {% for producto in page_obj %}
+      <article class="card catalog-card" data-producto-id="{{ producto.pk }}">
+        <img class="card__img product-image" src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" loading="lazy" width="420" height="280">
+        <div class="card__body">
+          <span class="card__tag">{{ producto.get_categoria_display }}</span>
+          <h3>{{ producto.nombre }}</h3>
+          {% if producto.descripcion %}<p class="card__meta">{{ producto.descripcion }}</p>{% endif %}
+          {% if producto.precio %}
+          <p class="product-price">{{ producto.precio|pesos }} <span>/ {{ producto.unidad }}</span></p>
+          <button type="button" class="btn btn-primary add-to-cart" data-product-id="{{ producto.pk }}" aria-label="Agregar {{ producto.nombre }} al carrito" disabled>Agregar al carrito</button>
+          {% else %}
+          <p class="product-price product-price--pending">Consultar precio</p>
+          {% endif %}
+        </div>
+      </article>
+      {% empty %}
+      <p class="catalog-empty">Pronto encontrarás aquí nuestros productos y servicios.</p>
+      {% endfor %}
+    </div>
+    <nav class="catalog-pagination" aria-label="Páginas del catálogo">
+      <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li><a class="page-link" href="?page=1#catalogo" aria-label="Primera página">« Primera</a></li>
+        <li><a class="page-link" href="?page={{ page_obj.previous_page_number }}#catalogo" rel="prev">Anterior</a></li>
+        {% endif %}
+        <li><span class="page-link page-link--current" aria-current="page">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span></li>
+        {% if page_obj.has_next %}
+        <li><a class="page-link" href="?page={{ page_obj.next_page_number }}#catalogo" rel="next">Siguiente</a></li>
+        <li><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}#catalogo" aria-label="Última página">Última »</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    <p class="catalog-count">{{ page_obj.paginator.count }} productos · hasta {{ page_obj.paginator.per_page }} por página</p>
+    {{ catalogo_carrito|json_script:"catalogo-carrito" }}
+  </div>
+</section>
+
+<section class="section" id="carrito" aria-labelledby="cart-title">
+  <div class="container">
+    <div class="section__head">
+      <p class="catalog-eyebrow">Pedido de demostración</p>
+      <h2 id="cart-title">Tu carrito</h2>
+      <p>Ajusta las cantidades y elige el local. La vista previa se queda en esta página.</p>
+    </div>
+    <div class="cart-layout">
+      <div class="cart-panel">
+        <div class="cart-panel__head"><h3>Productos elegidos</h3><button type="button" class="cart-text-button" id="cart-clear" disabled>Vaciar carrito</button></div>
+        <p id="cart-empty">Tu carrito está vacío. Agrega un producto del catálogo para comenzar.</p>
+        <ul class="cart-items" id="cart-items" aria-label="Productos del carrito"></ul>
+        <p id="cart-status" class="cart-status" role="status" aria-live="polite"></p>
+        <p id="cart-storage-note" class="cart-storage-note" hidden>Este navegador no permite guardar el carrito. Se conservará solo mientras permanezcas en esta página.</p>
+      </div>
+      <div class="cart-panel cart-summary">
+        <h3>Resumen del pedido</h3>
+        <label for="cart-branch">Local para retirar (demostración)</label>
+        <select id="cart-branch">
+          <option value="">Selecciona un local</option>
+          <option value="delfines">Almacén Mis Reinas · Los Delfines 1850</option>
+          <option value="lobos">Minimarket Mis Reinas · Av. Los Lobos 1836</option>
+          <option value="botilleria">Botillería Mis Reinas · Av. Los Lobos 813</option>
+        </select>
+        <p class="cart-phone">Teléfono de los tres locales: +56 9 5672 6971</p>
+        <div class="cart-total"><span>Total de ejemplo</span><strong id="cart-total">$0</strong></div>
+        <button type="button" id="cart-preview" class="btn btn-primary btn-block" disabled>Preparar pedido para WhatsApp (demo)</button>
+        <p class="cart-demo-hint">Solo muestra el mensaje. No abre WhatsApp, no envía información y no registra pedidos.</p>
+      </div>
+    </div>
+    <section class="cart-preview-panel" id="pedido-preview-panel" aria-labelledby="pedido-preview-title" hidden>
+      <div class="cart-panel__head"><h3 id="pedido-preview-title" tabindex="-1">Vista previa del mensaje para WhatsApp</h3><button type="button" class="cart-text-button" id="cart-preview-close">Cerrar vista previa</button></div>
+      <label class="cart-demo-hint" for="pedido-preview">Este texto es una simulación. No se ha enviado.</label>
+      <textarea id="pedido-preview" readonly rows="12"></textarea>
+    </section>
+  </div>
+</section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>Tres locales, cada uno con lo suyo</h2>
+          <p>Cada sucursal nació para resolver algo distinto en el día a día del barrio. Conócelas antes de pasar a comprar.</p>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <img src="{% static 'sucursales/img/delfines.jpg' %}" alt="Fachada del minimarket y panadería Mis Reinas en Los Delfines" class="card__img">
+            <div class="card__body">
+              <span class="card__tag">Panadería</span>
+              <h3>Almacén Mis Reinas</h3>
+              <p class="card__meta">Los Delfines 1850, Los Lobos Viejos. Pan del día, cecinas y confites.</p>
+            </div>
+          </article>
+          <article class="card">
+            <img src="{% static 'sucursales/img/lobos.jpg' %}" alt="Fachada del minimarket Mis Reinas en Los Lobos Viejos" class="card__img">
+            <div class="card__body">
+              <span class="card__tag">Abarrotes y mascotas</span>
+              <h3>Minimarket Mis Reinas</h3>
+              <p class="card__meta">Avenida Los Lobos 1836. Frutas, verduras y alimento a granel.</p>
+            </div>
+          </article>
+          <article class="card">
+            <img src="{% static 'sucursales/img/botilleria.jpg' %}" alt="Fachada de Botillería Mis Reinas en Avenida Los Lobos" class="card__img">
+            <div class="card__body">
+              <span class="card__tag">Botillería</span>
+              <h3>Botillería Mis Reinas</h3>
+              <p class="card__meta">Av. Los Lobos 813. Cervezas, vinos, destilados y CajaVecina.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted">
+      <div class="container">
+        <div class="section__head">
+          <h2>Lo que más buscan nuestros vecinos</h2>
+          <p>Servicios pensados para resolver el día completo sin salir del sector.</p>
+        </div>
+        <div class="services">
+          <div class="service">
+            <h3>Panadería diaria</h3>
+            <p>Pan amasado y marraqueta recién salidos del horno, todas las mañanas.</p>
+          </div>
+          <div class="service">
+            <h3>Punto CajaVecina</h3>
+            <p>Giros, pagos de cuentas y recargas de celular en Botillería Mis Reinas.</p>
+          </div>
+          <div class="service">
+            <h3>Mascotas a granel</h3>
+            <p>Whiskas, Master Dog y Pedigree por kilo, según lo que necesites.</p>
+          </div>
+          <div class="service">
+            <h3>Bebidas bien heladas</h3>
+            <p>Refrigeradores surtidos en los tres locales, listos para el momento.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}
+{% block extra_js %}<script src="{% static 'inicio/js/carrito.js' %}" defer></script>{% endblock %}

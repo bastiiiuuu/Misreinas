@@ -1,0 +1,87 @@
+{% extends 'inicio/base.html' %}
+{% load static %}
+{% block title %}Sucursales | Mis Reinas{% endblock %}
+{% block description %}Direcciones, contactos y servicios de los tres locales de Mis Reinas en Talcahuano y Concepción.{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'sucursales/css/sucursales.css' %}">{% endblock %}
+{% block content %}
+<section class="section">
+      <div class="container">
+        <div class="section__head">
+          <h1>Nuestros locales</h1>
+          <p>Encuentra tu local más cercano y sus canales de contacto. Consulta los horarios vigentes en el Facebook de cada sucursal.</p>
+        </div>
+
+        
+
+        <article class="branch">
+          <div class="branch__media">
+            <img src="{% static 'sucursales/img/delfines.jpg' %}" alt="Fachada del minimarket y panadería Mis Reinas en Los Delfines">
+          </div>
+          <div class="branch__content">
+            <span class="branch__badge">Panadería</span>
+            <h2>Almacén Mis Reinas</h2>
+            <p>Los Delfines 1850, Los Lobos Viejos, Talcahuano.</p>
+            <p class="branch__contact"><strong>Teléfono:</strong> <a href="tel:+56956726971">+56 9 5672 6971</a><br><strong>Correo:</strong> <a href="mailto:caterinvenegas.s@hotmail.com">caterinvenegas.s@hotmail.com</a></p>
+            <div class="contact-links">
+              <a href="https://wa.me/56956726971" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+              <a href="https://www.facebook.com/almacenmisreinas" target="_blank" rel="noopener noreferrer">Facebook del almacén</a>
+            </div>
+            <ul class="branch__list">
+              <li>Panadería diaria: pan amasado y marraqueta recién horneados.</li>
+              <li>Cecinas y fiambres para el día a día.</li>
+              <li>Bebidas frías y confites.</li>
+              <li>Abarrotes generales.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="branch branch--reverse">
+          <div class="branch__media branch__media--double">
+            <img src="{% static 'sucursales/img/lobos.jpg' %}" alt="Fachada del minimarket Mis Reinas en Los Lobos Viejos">
+            <img src="{% static 'nosotros/img/interior.jpg' %}" alt="Interior del minimarket con estantes de alimentos y helados">
+          </div>
+          <div class="branch__content">
+            <span class="branch__badge">Abarrotes y mascotas</span>
+            <h2>Minimarket Mis Reinas</h2>
+            <p>Avenida Los Lobos 1836, Talcahuano.</p>
+            <p class="branch__contact"><strong>Teléfono:</strong> <a href="tel:+56956726971">+56 9 5672 6971</a></p>
+            <div class="contact-links">
+              <a href="https://wa.me/56956726971" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+              <a href="https://www.facebook.com/profile.php?id=61594394111365" target="_blank" rel="noopener noreferrer">Facebook del minimarket</a>
+            </div>
+            <ul class="branch__list">
+              <li>Frutas y verduras frescas.</li>
+              <li>Abarrotes generales y bidones de agua purificada.</li>
+              <li>Alimento para mascotas a granel: Whiskas, Master Dog y Pedigree.</li>
+              <li>Helados.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="branch">
+          <div class="branch__media branch__media--double">
+            <img src="{% static 'sucursales/img/botilleria.jpg' %}" alt="Fachada de Botillería Mis Reinas en Avenida Los Lobos">
+            <img src="{% static 'sucursales/img/cajavecina.jpg' %}" alt="Mostrador de Botillería Mis Reinas con punto CajaVecina">
+          </div>
+          <div class="branch__content">
+            <span class="branch__badge" style="background:var(--color-navy)">Botillería</span>
+            <h2>Botillería Mis Reinas</h2>
+            <p>Avenida Los Lobos 813, Concepción, Chile.</p>
+            <p class="branch__contact"><strong>Teléfono:</strong> <a href="tel:+56956726971">+56 9 5672 6971</a></p>
+            <div class="contact-links">
+              <a href="https://wa.me/56956726971" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+              <a href="https://www.facebook.com/profile.php?id=61570976522580" target="_blank" rel="noopener noreferrer">Facebook de la botillería</a>
+            </div>
+            <ul class="branch__list">
+              <li>Patente de alcoholes Clase A: cervezas, vinos y destilados.</li>
+              <li>Bebidas heladas.</li>
+              <li>Punto de Atención CajaVecina BancoEstado: giros, pagos y recargas.</li>
+            </ul>
+          </div>
+        </article>
+
+        
+
+      </div>
+    </section>
+{% endblock %}

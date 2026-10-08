@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Mis Reinas{% endblock %}</title>
+  <meta name="description" content="{% block description %}Minimarkets y botillería familiar en Talcahuano. Conoce nuestros locales, productos y servicios.{% endblock %}">
+  <link rel="stylesheet" href="{% static 'inicio/css/styles.css' %}">
+  <link rel="icon" type="image/jpeg" href="{% static 'inicio/img/logo.jpg' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+<header class="site-header">
+    <nav class="navbar container" aria-label="Navegación principal">
+      <a href="{% url 'inicio:inicio' %}" class="navbar__brand">
+        <img src="{% static 'inicio/img/logo.jpg' %}" alt="Escudo Mis Reinas, dos leones sosteniendo una corona" class="navbar__logo">
+        <span>Mis Reinas</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar__menu" id="navMenu">
+        <li><a href="{% url 'inicio:inicio' %}" {% if request.resolver_match.app_name == 'inicio' %}class="active" aria-current="page"{% endif %}>Inicio</a></li>
+        <li><a href="{% url 'nosotros:nosotros' %}" {% if request.resolver_match.app_name == 'nosotros' %}class="active" aria-current="page"{% endif %}>Nosotros</a></li>
+        <li><a href="{% url 'sucursales:sucursales' %}" {% if request.resolver_match.app_name == 'sucursales' %}class="active" aria-current="page"{% endif %}>Sucursales</a></li>
+        <li><a href="{% url 'contacto:contacto' %}" {% if request.resolver_match.app_name == 'contacto' %}class="active" aria-current="page"{% endif %}>Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main id="contenido">
+    {% block content %}{% endblock %}
+  </main>
+<footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>Mis Reinas</h3>
+        <p>Minimarkets y botillería familiar atendiendo el sector de Los Lobos Viejos desde hace años, en Talcahuano y Concepción.</p>
+      </div>
+      <div>
+        <h3>Navegación</h3>
+        <ul>
+          <li><a href="{% url 'inicio:inicio' %}">Inicio</a></li>
+          <li><a href="{% url 'nosotros:nosotros' %}">Nosotros</a></li>
+          <li><a href="{% url 'sucursales:sucursales' %}">Sucursales</a></li>
+          <li><a href="{% url 'contacto:contacto' %}">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Ubicación</h3>
+        <p>Los Delfines 1850 · Avenida Los Lobos 1836 · Av. Los Lobos 813<br>Talcahuano / Concepción, Chile</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© {% now "Y" %} Mis Reinas. Proyecto académico de Desarrollo Backend · Bastian Acuna.</div>
+  </footer>
+  <script src="{% static 'inicio/js/main.js' %}" defer></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

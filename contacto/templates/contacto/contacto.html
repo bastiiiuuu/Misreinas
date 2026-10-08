@@ -1,0 +1,72 @@
+{% extends 'inicio/base.html' %}
+{% load static %}
+{% block title %}Contacto | Mis Reinas{% endblock %}
+{% block description %}Escríbenos por el formulario de contacto o visita los locales de Mis Reinas.{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'contacto/css/contacto.css' %}">{% endblock %}
+{% block content %}
+<section class="section">
+      <div class="container">
+        <div class="section__head">
+          <h1>Hablemos</h1>
+          <p>Contacta a cualquiera de los tres locales por teléfono o WhatsApp al +56 9 5672 6971. También puedes dejar una consulta en el formulario del sitio.</p>
+        </div>
+
+        <div class="contact-layout">
+          <div class="form-card">
+
+            {% for message in messages %}
+            <div class="form-feedback is-visible" role="status">{{ message }}</div>
+            {% endfor %}
+            <form id="contactForm" method="post" action="{% url 'contacto:contacto' %}">
+              {% csrf_token %}
+              {% if form.errors %}<p class="form-error-summary" role="alert">Revisa los campos indicados antes de enviar el mensaje.</p>{% endif %}
+              {{ form.non_field_errors }}
+              {% for field in form %}
+              <div class="field{% if field.errors %} has-error{% endif %}">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}<div class="field__error">{{ field.errors }}</div>{% endif %}
+              </div>
+              {% endfor %}
+              <button type="submit" class="btn btn-primary btn-block">Enviar mensaje</button>
+            </form>
+          </div>
+
+          <aside class="info-card">
+            <h2>Visita nuestros locales</h2>
+            <div class="info-card__item">
+              <h3>Atención en tienda</h3>
+              <p>Consulta por disponibilidad, productos y servicios directamente en nuestros locales.</p>
+            </div>
+            <div class="info-card__item">
+              <h3>Almacén Mis Reinas</h3>
+              <p>Los Delfines 1850, Los Lobos Viejos, Talcahuano.</p>
+              <p><a href="tel:+56956726971">+56 9 5672 6971</a><br><a href="mailto:caterinvenegas.s@hotmail.com">caterinvenegas.s@hotmail.com</a></p>
+              <div class="contact-links">
+                <a href="https://wa.me/56956726971" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                <a href="https://www.facebook.com/almacenmisreinas" target="_blank" rel="noopener noreferrer">Facebook del almacén</a>
+              </div>
+            </div>
+            <div class="info-card__item">
+              <h3>Minimarket Mis Reinas</h3>
+              <p>Avenida Los Lobos 1836, Talcahuano.</p>
+              <p><a href="tel:+56956726971">+56 9 5672 6971</a></p>
+              <div class="contact-links">
+                <a href="https://wa.me/56956726971" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                <a href="https://www.facebook.com/profile.php?id=61594394111365" target="_blank" rel="noopener noreferrer">Facebook del minimarket</a>
+              </div>
+            </div>
+            <div class="info-card__item">
+              <h3>Botillería Mis Reinas</h3>
+              <p>Avenida Los Lobos 813, Concepción, Chile.</p>
+              <p><a href="tel:+56956726971">+56 9 5672 6971</a></p>
+              <div class="contact-links">
+                <a href="https://wa.me/56956726971" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                <a href="https://www.facebook.com/profile.php?id=61570976522580" target="_blank" rel="noopener noreferrer">Facebook de la botillería</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+{% endblock %}

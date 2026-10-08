@@ -1,0 +1,57 @@
+{% extends 'inicio/base.html' %}
+{% load static %}
+{% block title %}Nosotros | Mis Reinas{% endblock %}
+{% block description %}La historia familiar detrás de Mis Reinas, el significado de nuestro escudo y los valores que guían la atención en cada local.{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'nosotros/css/nosotros.css' %}">{% endblock %}
+{% block content %}
+<section class="section">
+      <div class="container">
+        <div class="split">
+          <div>
+            <p class="hero__eyebrow" style="color:var(--color-red)">Nuestra historia</p>
+            <h1>Un almacén de barrio que creció de a poco, sin dejar de ser familiar</h1>
+            <p>Mis Reinas partió como un pequeño minimarket en Los Lobos Viejos, atendido por la misma familia que hoy sigue detrás del mesón. Con el tiempo llegó la panadería, después un segundo local pensado para el abasto de la semana completa, y finalmente Botillería Mis Reinas, en Avenida Los Lobos, para cerrar el círculo de lo que el sector necesitaba.</p>
+            <p>Cada sucursal se abrió porque un vecino pidió algo que no encontraba cerca: pan temprano en la mañana, alimento para su mascota sin comprar el saco entero, o un lugar de confianza para hacer un giro sin cruzar la ciudad.</p>
+          </div>
+          <img src="{% static 'nosotros/img/interior.jpg' %}" alt="Interior del minimarket Mis Reinas con estantes de alimentos y helados">
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted">
+      <div class="container">
+        <div class="split">
+          <img src="{% static 'inicio/img/logo.jpg' %}" alt="Escudo oficial de Mis Reinas con dos leones y una corona dorada">
+          <div>
+            <p class="hero__eyebrow" style="color:var(--color-red)">El escudo</p>
+            <h2>Por qué dos leones cuidan nuestra corona</h2>
+            <p>El escudo de Mis Reinas muestra dos leones sosteniendo una corona: representan el esfuerzo de la familia que sostiene el negocio día a día, y la lealtad hacia quienes lo eligen. La corona es la comunidad de Los Lobos Viejos, el motivo por el que el negocio existe.</p>
+            <p>No es un adorno: es una forma de recordar, cada vez que alguien entra a comprar, que detrás del mesón hay un compromiso con el barrio, no solo una transacción.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>Misión y valores</h2>
+          <p>Lo que guía la atención en Mis Reinas, local a local.</p>
+        </div>
+        <div class="values">
+          <div class="value">
+            <h3>Cercanía real</h3>
+            <p>Conocemos a nuestros clientes por nombre y sabemos qué buscan antes de que lo pidan.</p>
+          </div>
+          <div class="value">
+            <h3>Esfuerzo familiar</h3>
+            <p>Cada local lo atiende la misma familia que lo levantó, desde el primer día hasta hoy.</p>
+          </div>
+          <div class="value">
+            <h3>Compromiso con el barrio</h3>
+            <p>Resolvemos lo cotidiano de Los Lobos Viejos: pan, abarrotes, mascotas y trámites simples.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}

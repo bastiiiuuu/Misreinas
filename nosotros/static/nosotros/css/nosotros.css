@@ -1,0 +1,22 @@
+/* =========================================================
+   NOSOTROS
+   ========================================================= */
+.split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  align-items: center;
+}
+@media (min-width: 800px) { .split { grid-template-columns: 1fr 1fr; } }
+.split img { border-radius: var(--radius); box-shadow: var(--shadow-card); }
+
+.values {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+@media (min-width: 700px) { .values { grid-template-columns: repeat(3, 1fr); } }
+.value { border-top: 3px solid var(--color-gold); padding-top: var(--space-xs); }
+.value h3 { font-size: 1.05rem; }
+.value p { font-size: 0.92rem; color: var(--color-ink-soft); }
