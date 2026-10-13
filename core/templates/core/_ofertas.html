@@ -1,0 +1,41 @@
+{# include recibe page_obj desde core/views.py; Django procesa estas etiquetas en el servidor y elimina los comentarios al renderizar. #}
+<div class="card-grid offers-grid"> {# Agrupa las tarjetas de la página actual; la distribución visual está definida por el CSS de la app core. #}
+  {% for oferta in page_obj %} {# for repite el bloque por cada instancia de Oferta del Page; oferta es la variable local de la iteración, no el número de página. #}
+  <article class="card offer-card"> {# Representa una oferta independiente y reutiliza el diseño de tarjetas existente. #}
+    {% if oferta.imagen %} {# if evalúa si ImageField tiene un nombre de archivo asociado; True muestra la fotografía, sin comprobar aquí la existencia física del archivo. #}
+    <img src="{{ oferta.imagen.url }}" alt="{{ oferta.nombre }}" class="card__img offer-card__image" loading="lazy"> {# Las dobles llaves imprimen valores escapados; imagen.url usa el almacenamiento y MEDIA_URL para generar la dirección del archivo local. #}
+    {% else %} {# else selecciona la alternativa cuando el campo no tiene archivo y evita acceder a .url de un FieldFile vacío. #}
+    <p>Imagen no disponible.</p> {# Ofrece una alternativa legible si un registro fue creado sin imagen fuera del formulario obligatorio del Admin. #}
+    {% endif %} {# Finaliza la condición de imagen y permite continuar con los datos de la misma oferta. #}
+    <div class="card__body"> {# Agrupa nombre, precio y descripción dentro del contenido de la tarjeta. #}
+      <span class="card__tag">Oferta</span> {# Identifica el tipo de contenido sin añadir un campo redundante al modelo. #}
+      <h3>{{ oferta.nombre }}</h3> {# Lee nombre de la instancia y lo imprime con el escape automático de Django. #}
+      {% if oferta.precio %} {# if comprueba si existe un precio: un Decimal positivo es verdadero y None es falso; el formulario rechaza cero mediante MinValueValidator. #}
+      <p class="offer-card__price">$ {{ oferta.precio|floatformat:"0g" }}</p> {# floatformat:0g muestra cero decimales y agrupa miles según el idioma es-cl; la moneda es CLP, indicada en el modelo y la descripción. #}
+      {% else %} {# Se ejecuta si precio es None: la publicación no informa un importe y no se inventa un número para completar el registro. #}
+      <p class="offer-card__price">Consultar precio</p> {# Comunica la ausencia de un precio verificable de la publicación. #}
+      {% endif %} {# Cierra las dos alternativas de presentación del precio. #}
+      <p class="card__meta">{{ oferta.descripcion|urlize|linebreaksbr }}</p> {# urlize convierte enlaces y correos manteniendo el escape; linebreaksbr conserva los saltos de línea de la descripción sin usar safe. #}
+    </div> {# Cierra el contenido de esta tarjeta. #}
+  </article> {# Cierra la oferta actual; el for continúa con la siguiente instancia de la misma página. #}
+  {% empty %} {# empty es una alternativa del for: se ejecuta cuando no hay registros en page_obj, no es el else de un if. #}
+  <p>Todavía no hay ofertas publicadas.</p> {# Evita mostrar un catálogo vacío sin explicación antes de cargar datos desde el Admin. #}
+  {% endfor %} {# Finaliza la repetición; no imprime los registros que pertenecen a otras páginas. #}
+</div> {# Cierra la cuadrícula de ofertas. #}
+<nav aria-label="Paginación de ofertas"> {# Identifica los controles de navegación para lectores de pantalla. #}
+  <ul class="pagination"> {# Agrupa botones y estado actual como una lista semántica. #}
+    {% if page_obj.has_previous %} {# Django llama a has_previous() sin paréntesis en el template; True permite mostrar retroceso y False selecciona el else. #}
+    <li><a class="page-link" href="{% url 'inicio' %}?page=1#ofertas">Primera</a></li> {# url resuelve el nombre de Inicio; ?page=1 selecciona la primera página y el fragmento desplaza el navegador hacia el catálogo. #}
+    <li><a class="page-link" href="{% url 'inicio' %}?page={{ page_obj.previous_page_number }}#ofertas" rel="prev">Anterior</a></li> {# previous_page_number() obtiene el número anterior solo dentro del if verdadero; el GET será leído por request.GET en la vista. #}
+    {% else %} {# En la primera página no existe una página anterior, por lo que el control se presenta sin href. #}
+    <li><span class="page-link disabled" aria-disabled="true">Anterior</span></li> {# Un span no inicia una navegación y aria-disabled comunica el estado deshabilitado. #}
+    {% endif %} {# Finaliza las alternativas de retroceso. #}
+    <li><span class="page-link current" aria-current="page">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span></li> {# number pertenece a Page y num_pages al Paginator; las dobles llaves imprimen el número actual y el total calculado. #}
+    {% if page_obj.has_next %} {# has_next() devuelve True cuando existe otra página; este if evita calcular un número siguiente inexistente. #}
+    <li><a class="page-link" href="{% url 'inicio' %}?page={{ page_obj.next_page_number }}#ofertas" rel="next">Siguiente</a></li> {# Imprime el número devuelto por next_page_number() y lo envía mediante GET al ejecutar el enlace. #}
+    <li><a class="page-link" href="{% url 'inicio' %}?page={{ page_obj.paginator.num_pages }}#ofertas">Última</a></li> {# Usa num_pages para navegar a la última página disponible sin fijar manualmente un número. #}
+    {% else %} {# En la última página has_next() es False y corresponde deshabilitar el avance. #}
+    <li><span class="page-link disabled" aria-disabled="true">Siguiente</span></li> {# Presenta el control de avance sin un enlace inválido. #}
+    {% endif %} {# Cierra las alternativas de avance. #}
+  </ul> {# Cierra la lista de controles. #}
+</nav> {# Finaliza la navegación del catálogo. #}

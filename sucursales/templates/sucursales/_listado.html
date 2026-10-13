@@ -1,0 +1,20 @@
+{# Este bloque se incluye dentro del main de sucursales.html; include conserva el contexto y recibe sucursales desde views.py. #}
+{% for sucursal in sucursales %} {# for repite este bloque por cada instancia del QuerySet sucursales enviado por render(); sucursal es la variable local de la iteración y representa un local real. #}
+<article class="branch{% if forloop.counter|divisibleby:2 %} branch--reverse{% endif %}"> {# if evalúa una condición: forloop.counter cuenta desde 1 dentro del listado y divisibleby:2 devuelve True para números pares; solo en ese caso agrega branch--reverse. endif cierra la condición y no requiere else cuando no se necesita una alternativa. #}
+  <div class="branch__media"> {# Usa el contenedor de imágenes de la plantilla original. #}
+    {% if sucursal.imagen %} {# if evalúa el valor de FieldFile: es verdadero cuando tiene un nombre de archivo asociado; entonces renderiza la imagen. No verifica por sí solo que el archivo siga existiendo físicamente. #}
+    <img src="{{ sucursal.imagen.url }}" alt="Fotografía de {{ sucursal.nombre }}" loading="lazy"> {# Las dobles llaves imprimen valores del contexto: imagen.url obtiene la URL mediante el almacenamiento y nombre lee el campo de la instancia; Django escapa los valores. El atributo HTML loading=lazy retrasa descargas fuera de pantalla. #}
+    {% else %} {# else es la alternativa del if anterior: se renderiza cuando imagen no tiene archivo asociado; evita acceder a .url de un FieldFile vacío, que produciría un error. #}
+    <p>Imagen no disponible.</p> {# Ofrece un texto alternativo sin intentar acceder a una url inexistente. #}
+    {% endif %} {# Cierra la comprobación de imagen; no comprueba si el archivo físico fue eliminado externamente. #}
+  </div> {# Cierra el contenedor visual de la imagen. #}
+  <div class="branch__content"> {# Conserva el espaciado y la tipografía definidos por el frontend. #}
+    <span class="branch__badge">Sucursal</span> {# Usa una categoría visual fija para mantener el modelo en seis campos explícitos. #}
+    <h2>{{ sucursal.nombre }}</h2> {# Muestra el campo nombre; Django escapa el texto de forma predeterminada. #}
+    <p>{{ sucursal.direccion }}</p> {# Imprime la dirección guardada en la base de datos. #}
+    <p>{{ sucursal.descripcion|urlize|linebreaksbr }}</p> {# urlize convierte URLs y correos en enlaces con escape activado; linebreaksbr conserva saltos de línea para separar servicios y contacto, sin usar safe. #}
+  </div> {# Cierra el contenido textual de la tarjeta. #}
+</article> {# Cierra una tarjeta; el bucle repetirá este mismo HTML para cada registro actual. #}
+{% empty %} {# empty pertenece al for, no es un else del if: muestra la alternativa cuando la colección iterada está vacía y ninguna sucursal pudo recorrerse. #}
+<p>Todavía no hay sucursales publicadas.</p> {# Indica al visitante que la base de datos aún no contiene sucursales. #}
+{% endfor %} {# Finaliza el listado; la paginación de las ofertas se implementa por separado en core/_ofertas.html. #}

@@ -1,6 +1,6 @@
+# Evita versionar archivos generados localmente; no afecta a las carpetas de referencia originales.
 .venv/
 __pycache__/
 *.py[cod]
-staticfiles/
-*.log
-.env
+db.sqlite3
+media/

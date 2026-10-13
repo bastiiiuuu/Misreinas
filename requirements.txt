@@ -1,5 +1,5 @@
-asgiref==3.12.1
-Django==6.1
-Pillow==12.3.0
-sqlparse==0.6.0
-tzdata==2026.5
+asgiref==3.12.1  # Dependencia de Django que aporta adaptadores entre código síncrono y asíncrono, utilizados en ASGI.
+Django==6.1  # Framework del backend: ORM, rutas, vistas, templates, migraciones, autenticación y Admin; == fija la versión.
+Pillow==12.3.0  # Permite validar los archivos de imagen enviados al formulario de ImageField en Django Admin.
+sqlparse==0.6.0  # Dependencia de Django para analizar y presentar SQL en sus herramientas; no sustituye al ORM.
+tzdata==2026.5  # Proporciona la base de zonas horarias para America/Santiago, especialmente necesaria en Windows.

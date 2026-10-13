@@ -1,0 +1,109 @@
+{% load static %} {# Habilita la etiqueta static para construir URLs de CSS y JS. #}
+<!DOCTYPE html> {# Declara HTML5 para que el navegador interprete la página en modo estándar. #}
+<html lang="es-CL"> {# Abre el documento e indica español de Chile con lang para lectores de pantalla y herramientas del navegador. #}
+<head> {# Agrupa título, metadatos y CSS antes del contenido visible de la página. #}
+  <meta charset="UTF-8"> {# Declara UTF-8 para interpretar correctamente tildes, eñes y símbolos del contenido. #}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> {# Usa el ancho del dispositivo y escala inicial uno para que los estilos responsive funcionen en móviles. #}
+  <title>Nosotros | Mis Reinas &amp; Botillería Salas</title> {# Define el texto de la pestaña del navegador y permite reconocer esta sección. #}
+  <meta name="description" content="La historia familiar detrás de Mis Reinas y Botillería Salas, el significado de nuestro escudo y los valores que guían la atención en cada local."> {# Describe la página para motores de búsqueda y otras herramientas; el contenido de meta no se muestra como párrafo. #}
+  <link rel="stylesheet" href="{% static 'about/css/styles.css' %}"> {# Busca el CSS de esta app dentro de su carpeta static con namespace. #}
+</head> {# Cierra el cabecera de metadatos para mantener la anidación del DOM y el alcance de sus estilos. #}
+<body> {# Abre el contenido visible del documento; los scripts se cargan después de estos elementos. #}
+
+  <header class="site-header"> {# Agrupa identidad de marca y navegación; la clase site-header conecta con el estilo del encabezado. #}
+    <nav class="navbar container" aria-label="Navegación principal"> {# Agrupa enlaces de navegación y usa aria-label para explicar su finalidad a lectores de pantalla. #}
+      <a href="{% url 'inicio' %}" class="navbar__brand"> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+        <img src="https://i.postimg.cc/MGhw2NCr/logo.jpg" alt="Escudo Mis Reinas, dos leones sosteniendo una corona" class="navbar__logo"> {# Carga una imagen de la URL indicada; alt describe su contenido si no carga o se utiliza un lector de pantalla. #}
+        <span>Mis Reinas</span> {# Agrupa texto o elementos inline sin iniciar un bloque; sus clases conectan con la presentación CSS. #}
+      </a> {# Cierra el enlace para mantener la anidación del DOM y el alcance de sus estilos. #}
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú"> {# Define el botón del menú; id enlaza con JavaScript y los atributos aria describen el control y su estado inicial. #}
+        <span></span><span></span><span></span> {# Agrupa texto o elementos inline sin iniciar un bloque; sus clases conectan con la presentación CSS. #}
+      </button> {# Cierra el botón para mantener la anidación del DOM y el alcance de sus estilos. #}
+      <ul class="navbar__menu" id="navMenu"> {# Agrupa elementos de lista; su id o clase permite organizar el menú mediante CSS y JavaScript. #}
+        <li><a href="{% url 'inicio' %}">Inicio</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+        <li><a href="{% url 'nosotros' %}" class="active">Nosotros</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+        <li><a href="{% url 'sucursales' %}">Sucursales</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+        <li><a href="{% url 'contacto' %}">Contacto</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+      </ul> {# Cierra el lista para mantener la anidación del DOM y el alcance de sus estilos. #}
+    </nav> {# Cierra el navegación para mantener la anidación del DOM y el alcance de sus estilos. #}
+  </header> {# Cierra el encabezado del sitio para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+  <main> {# Identifica el contenido principal de esta página para navegación semántica y accesibilidad. #}
+    <section class="section"> {# Agrupa un tema de la página; las clases controlan separación, fondo y presentación de esta sección. #}
+      <div class="container"> {# Limita y centra el contenido con container; las demás clases ajustan su distribución dentro de esta sección. #}
+        <div class="split"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+          <div> {# Agrupa elementos relacionados dentro del layout para mantener una estructura DOM coherente. #}
+            <p class="hero__eyebrow" style="color:var(--color-red)">Nuestra historia</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+            <h1>Un almacén de barrio que creció de a poco, sin dejar de ser familiar</h1> {# Presenta el título principal de la página y su nivel superior en la jerarquía de encabezados. #}
+            <p>Mis Reinas partió como un pequeño minimarket en Los Lobos Viejos, atendido por la misma familia que hoy sigue detrás del mesón. Con el tiempo llegó la panadería, después un segundo local pensado para el abasto de la semana completa, y finalmente Botillería Salas, en Avenida Los Lobos, para cerrar el círculo de lo que el sector necesitaba.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+            <p>Cada sucursal se abrió porque un vecino pidió algo que no encontraba cerca: pan temprano en la mañana, alimento para su mascota sin comprar el saco entero, o un lugar de confianza para hacer un giro sin cruzar la ciudad.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+          </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+          <img src="{% static 'about/img/lobos.jpg' %}" alt="Interior del minimarket Mis Reinas con estantes de alimentos y helados"> {# Carga una imagen de la URL indicada; alt describe su contenido si no carga o se utiliza un lector de pantalla. #}
+        </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+      </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+    </section> {# Cierra el sección para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+    <section class="section section--muted"> {# Agrupa un tema de la página; las clases controlan separación, fondo y presentación de esta sección. #}
+      <div class="container"> {# Limita y centra el contenido con container; las demás clases ajustan su distribución dentro de esta sección. #}
+        <div class="split"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+          <img src="https://i.postimg.cc/MGhw2NCr/logo.jpg" alt="Escudo oficial de Mis Reinas con dos leones y una corona dorada"> {# Carga una imagen de la URL indicada; alt describe su contenido si no carga o se utiliza un lector de pantalla. #}
+          <div> {# Agrupa elementos relacionados dentro del layout para mantener una estructura DOM coherente. #}
+            <p class="hero__eyebrow" style="color:var(--color-red)">El escudo</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+            <h2>Por qué dos leones cuidan nuestra corona</h2> {# Introduce una sección subordinada al título principal para estructurar el contenido. #}
+            <p>El escudo de Mis Reinas muestra dos leones sosteniendo una corona: representan el esfuerzo de la familia que sostiene el negocio día a día, y la lealtad hacia quienes lo eligen. La corona es la comunidad de Los Lobos Viejos, el motivo por el que el negocio existe.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+            <p>No es un adorno: es una forma de recordar, cada vez que alguien entra a comprar, que detrás del mesón hay un compromiso con el barrio, no solo una transacción.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+          </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+        </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+      </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+    </section> {# Cierra el sección para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+    <section class="section"> {# Agrupa un tema de la página; las clases controlan separación, fondo y presentación de esta sección. #}
+      <div class="container"> {# Limita y centra el contenido con container; las demás clases ajustan su distribución dentro de esta sección. #}
+        <div class="section__head"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+          <h2>Misión y valores</h2> {# Introduce una sección subordinada al título principal para estructurar el contenido. #}
+          <p>Lo que guía la atención en Mis Reinas y Botillería Salas, local a local.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+        </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+        <div class="values"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+          <div class="value"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+            <h3>Cercanía real</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+            <p>Conocemos a nuestros clientes por nombre y sabemos qué buscan antes de que lo pidan.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+          </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+          <div class="value"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+            <h3>Esfuerzo familiar</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+            <p>Cada local lo atiende la misma familia que lo levantó, desde el primer día hasta hoy.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+          </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+          <div class="value"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+            <h3>Compromiso con el barrio</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+            <p>Resolvemos lo cotidiano de Los Lobos Viejos: pan, abarrotes, mascotas y trámites simples.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+          </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+        </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+      </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+    </section> {# Cierra el sección para mantener la anidación del DOM y el alcance de sus estilos. #}
+  </main> {# Cierra el contenido principal para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+  <footer class="site-footer"> {# Agrupa información general, navegación secundaria y ubicación al final del contenido. #}
+    <div class="container footer-grid"> {# Limita y centra el contenido con container; las demás clases ajustan su distribución dentro de esta sección. #}
+      <div> {# Agrupa elementos relacionados dentro del layout para mantener una estructura DOM coherente. #}
+        <h3>Mis Reinas</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+        <p>Minimarkets y botillería familiar atendiendo el sector de Los Lobos Viejos desde hace años, en Talcahuano y Concepción.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+      </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+      <div> {# Agrupa elementos relacionados dentro del layout para mantener una estructura DOM coherente. #}
+        <h3>Navegación</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+        <ul> {# Agrupa elementos de lista; su id o clase permite organizar el menú mediante CSS y JavaScript. #}
+          <li><a href="{% url 'inicio' %}">Inicio</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+          <li><a href="{% url 'nosotros' %}">Nosotros</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+          <li><a href="{% url 'sucursales' %}">Sucursales</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+          <li><a href="{% url 'contacto' %}">Contacto</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+        </ul> {# Cierra el lista para mantener la anidación del DOM y el alcance de sus estilos. #}
+      </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+      <div> {# Agrupa elementos relacionados dentro del layout para mantener una estructura DOM coherente. #}
+        <h3>Ubicación</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+        <p>Los Delfines 1850 · Avenida Los Lobos 1836 · Av. Los Lobos 813<br>Talcahuano / Concepción, Chile</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+      </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+    </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+    <div class="footer-bottom">© 2026 Mis Reinas &amp; Botillería Salas. Proyecto académico de Desarrollo Backend.</div> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+  </footer> {# Cierra el pie de página para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+  <script src="{% static 'about/js/main.js' %}"></script> {# Carga el JS propio de la app al final del body, después de construir el DOM. #}
+</body> {# Cierra el cuerpo visible para mantener la anidación del DOM y el alcance de sus estilos. #}
+</html> {# Cierra el documento HTML para mantener la anidación del DOM y el alcance de sus estilos. #}

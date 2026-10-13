@@ -1,0 +1,108 @@
+{% load static %} {# Habilita la etiqueta static para construir URLs de CSS y JS. #}
+<!DOCTYPE html> {# Declara HTML5 para que el navegador interprete la página en modo estándar. #}
+<html lang="es-CL"> {# Abre el documento e indica español de Chile con lang para lectores de pantalla y herramientas del navegador. #}
+<head> {# Agrupa título, metadatos y CSS antes del contenido visible de la página. #}
+  <meta charset="UTF-8"> {# Declara UTF-8 para interpretar correctamente tildes, eñes y símbolos del contenido. #}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> {# Usa el ancho del dispositivo y escala inicial uno para que los estilos responsive funcionen en móviles. #}
+  <title>Mis Reinas &amp; Botillería Salas | Minimarkets en Talcahuano</title> {# Define el texto de la pestaña del navegador y permite reconocer esta sección. #}
+  <meta name="description" content="Red de minimarkets y botillería familiar en Los Lobos Viejos, Talcahuano: panadería diaria, abarrotes, alimento para mascotas a granel, bebidas y CajaVecina."> {# Describe la página para motores de búsqueda y otras herramientas; el contenido de meta no se muestra como párrafo. #}
+  <link rel="stylesheet" href="{% static 'core/css/styles.css' %}"> {# Busca el CSS de esta app dentro de su carpeta static con namespace. #}
+</head> {# Cierra el cabecera de metadatos para mantener la anidación del DOM y el alcance de sus estilos. #}
+<body> {# Abre el contenido visible del documento; los scripts se cargan después de estos elementos. #}
+
+  <header class="site-header"> {# Agrupa identidad de marca y navegación; la clase site-header conecta con el estilo del encabezado. #}
+    <nav class="navbar container" aria-label="Navegación principal"> {# Agrupa enlaces de navegación y usa aria-label para explicar su finalidad a lectores de pantalla. #}
+      <a href="{% url 'inicio' %}" class="navbar__brand"> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+        <img src="https://i.postimg.cc/MGhw2NCr/logo.jpg" alt="Escudo Mis Reinas, dos leones sosteniendo una corona" class="navbar__logo"> {# Carga una imagen de la URL indicada; alt describe su contenido si no carga o se utiliza un lector de pantalla. #}
+        <span>Mis Reinas</span> {# Agrupa texto o elementos inline sin iniciar un bloque; sus clases conectan con la presentación CSS. #}
+      </a> {# Cierra el enlace para mantener la anidación del DOM y el alcance de sus estilos. #}
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú"> {# Define el botón del menú; id enlaza con JavaScript y los atributos aria describen el control y su estado inicial. #}
+        <span></span><span></span><span></span> {# Agrupa texto o elementos inline sin iniciar un bloque; sus clases conectan con la presentación CSS. #}
+      </button> {# Cierra el botón para mantener la anidación del DOM y el alcance de sus estilos. #}
+      <ul class="navbar__menu" id="navMenu"> {# Agrupa elementos de lista; su id o clase permite organizar el menú mediante CSS y JavaScript. #}
+        <li><a href="{% url 'inicio' %}" class="active">Inicio</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+        <li><a href="{% url 'nosotros' %}">Nosotros</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+        <li><a href="{% url 'sucursales' %}">Sucursales</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+        <li><a href="{% url 'contacto' %}">Contacto</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+      </ul> {# Cierra el lista para mantener la anidación del DOM y el alcance de sus estilos. #}
+    </nav> {# Cierra el navegación para mantener la anidación del DOM y el alcance de sus estilos. #}
+  </header> {# Cierra el encabezado del sitio para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+  <main> {# Identifica el contenido principal de esta página para navegación semántica y accesibilidad. #}
+    <section class="hero"> {# Agrupa un tema de la página; las clases controlan separación, fondo y presentación de esta sección. #}
+      <div class="container hero__inner"> {# Limita y centra el contenido con container; las demás clases ajustan su distribución dentro de esta sección. #}
+        <img src="https://i.postimg.cc/MGhw2NCr/logo.jpg" alt="" class="hero__logo"> {# Muestra una imagen decorativa con alt vacío para no repetir información que ya ofrece el texto cercano. #}
+        <p class="hero__eyebrow">Los Lobos Viejos, Talcahuano</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+        <h1>El almacén del barrio que conoce a cada vecino por su nombre</h1> {# Presenta el título principal de la página y su nivel superior en la jerarquía de encabezados. #}
+        <p>Tres locales, una misma familia: pan recién horneado, abarrotes de siempre, alimento para mascotas por kilo y una botillería con patente completa, a pasos de tu casa en Talcahuano y Concepción.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+        <div class="hero__actions"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+          <a href="{% url 'sucursales' %}" class="btn btn-primary">Ver nuestras sucursales</a> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+          <a href="{% url 'contacto' %}" class="btn btn-outline">Escríbenos</a> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+        </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+      </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+    </section> {# Cierra el sección para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+    <section class="section" id="ofertas"> {# id permite que los enlaces de paginación sitúen el navegador en el catálogo después de pedir otra página. #}
+      <div class="container"> {# Centra el contenido y conserva la estructura visual existente de Inicio. #}
+        <div class="section__head"> {# Agrupa el título y la explicación del catálogo administrado desde Django. #}
+          <h2>Ofertas de nuestras sucursales</h2> {# Introduce el contenido dinámico que se obtiene del modelo Oferta. #}
+          <p>Conoce nuestros productos y promociones.</p> {# Presenta el catálogo con una descripción breve del contenido. #}
+        </div> {# Cierra la cabecera del catálogo. #}
+        {% include 'core/_ofertas.html' %} {# include renderiza el parcial dentro de Inicio y conserva page_obj del contexto enviado por core/views.py. #}
+      </div> {# Cierra el contenedor del catálogo. #}
+    </section> {# Finaliza la sección dinámica y permite continuar con el resto de Inicio. #}
+
+    <section class="section section--muted"> {# Agrupa un tema de la página; las clases controlan separación, fondo y presentación de esta sección. #}
+      <div class="container"> {# Limita y centra el contenido con container; las demás clases ajustan su distribución dentro de esta sección. #}
+        <div class="section__head"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+          <h2>Lo que más buscan nuestros vecinos</h2> {# Introduce una sección subordinada al título principal para estructurar el contenido. #}
+          <p>Servicios pensados para resolver el día completo sin salir del sector.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+        </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+        <div class="services"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+          <div class="service"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+            <h3>Panadería diaria</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+            <p>Pan amasado y marraqueta recién salidos del horno, todas las mañanas.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+          </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+          <div class="service"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+            <h3>Punto CajaVecina</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+            <p>Giros, pagos de cuentas y recargas de celular en Botillería Salas.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+          </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+          <div class="service"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+            <h3>Mascotas a granel</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+            <p>Whiskas, Master Dog y Pedigree por kilo, según lo que necesites.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+          </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+          <div class="service"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+            <h3>Bebidas bien heladas</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+            <p>Refrigeradores surtidos en los tres locales, listos para el momento.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+          </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+        </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+      </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+    </section> {# Cierra el sección para mantener la anidación del DOM y el alcance de sus estilos. #}
+  </main> {# Cierra el contenido principal para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+  <footer class="site-footer"> {# Agrupa información general, navegación secundaria y ubicación al final del contenido. #}
+    <div class="container footer-grid"> {# Limita y centra el contenido con container; las demás clases ajustan su distribución dentro de esta sección. #}
+      <div> {# Agrupa elementos relacionados dentro del layout para mantener una estructura DOM coherente. #}
+        <h3>Mis Reinas</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+        <p>Minimarkets y botillería familiar atendiendo el sector de Los Lobos Viejos desde hace años, en Talcahuano y Concepción.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+      </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+      <div> {# Agrupa elementos relacionados dentro del layout para mantener una estructura DOM coherente. #}
+        <h3>Navegación</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+        <ul> {# Agrupa elementos de lista; su id o clase permite organizar el menú mediante CSS y JavaScript. #}
+          <li><a href="{% url 'inicio' %}">Inicio</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+          <li><a href="{% url 'nosotros' %}">Nosotros</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+          <li><a href="{% url 'sucursales' %}">Sucursales</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+          <li><a href="{% url 'contacto' %}">Contacto</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+        </ul> {# Cierra el lista para mantener la anidación del DOM y el alcance de sus estilos. #}
+      </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+      <div> {# Agrupa elementos relacionados dentro del layout para mantener una estructura DOM coherente. #}
+        <h3>Ubicación</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+        <p>Los Delfines 1850 · Avenida Los Lobos 1836 · Av. Los Lobos 813<br>Talcahuano / Concepción, Chile</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+      </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+    </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+    <div class="footer-bottom">© 2026 Mis Reinas &amp; Botillería Salas. Proyecto académico de Desarrollo Backend.</div> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+  </footer> {# Cierra el pie de página para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+  <script src="{% static 'core/js/main.js' %}"></script> {# Carga el JS propio de la app al final del body, después de construir el DOM. #}
+</body> {# Cierra el cuerpo visible para mantener la anidación del DOM y el alcance de sus estilos. #}
+</html> {# Cierra el documento HTML para mantener la anidación del DOM y el alcance de sus estilos. #}

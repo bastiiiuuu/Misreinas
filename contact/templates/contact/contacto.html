@@ -1,0 +1,134 @@
+{% load static %} {# Habilita la etiqueta static para construir URLs de CSS y JS. #}
+<!DOCTYPE html> {# Declara HTML5 para que el navegador interprete la página en modo estándar. #}
+<html lang="es-CL"> {# Abre el documento e indica español de Chile con lang para lectores de pantalla y herramientas del navegador. #}
+<head> {# Agrupa título, metadatos y CSS antes del contenido visible de la página. #}
+  <meta charset="UTF-8"> {# Declara UTF-8 para interpretar correctamente tildes, eñes y símbolos del contenido. #}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> {# Usa el ancho del dispositivo y escala inicial uno para que los estilos responsive funcionen en móviles. #}
+  <title>Contacto | Mis Reinas &amp; Botillería Salas</title> {# Define el texto de la pestaña del navegador y permite reconocer esta sección. #}
+  <meta name="description" content="Escríbenos por WhatsApp, correo o el formulario en línea. Direcciones y horarios de contacto de Mis Reinas y Botillería Salas."> {# Describe la página para motores de búsqueda y otras herramientas; el contenido de meta no se muestra como párrafo. #}
+  <link rel="stylesheet" href="{% static 'contact/css/styles.css' %}"> {# Busca el CSS de esta app dentro de su carpeta static con namespace. #}
+</head> {# Cierra el cabecera de metadatos para mantener la anidación del DOM y el alcance de sus estilos. #}
+<body> {# Abre el contenido visible del documento; los scripts se cargan después de estos elementos. #}
+
+  <header class="site-header"> {# Agrupa identidad de marca y navegación; la clase site-header conecta con el estilo del encabezado. #}
+    <nav class="navbar container" aria-label="Navegación principal"> {# Agrupa enlaces de navegación y usa aria-label para explicar su finalidad a lectores de pantalla. #}
+      <a href="{% url 'inicio' %}" class="navbar__brand"> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+        <img src="https://i.postimg.cc/MGhw2NCr/logo.jpg" alt="Escudo Mis Reinas, dos leones sosteniendo una corona" class="navbar__logo"> {# Carga una imagen de la URL indicada; alt describe su contenido si no carga o se utiliza un lector de pantalla. #}
+        <span>Mis Reinas</span> {# Agrupa texto o elementos inline sin iniciar un bloque; sus clases conectan con la presentación CSS. #}
+      </a> {# Cierra el enlace para mantener la anidación del DOM y el alcance de sus estilos. #}
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú"> {# Define el botón del menú; id enlaza con JavaScript y los atributos aria describen el control y su estado inicial. #}
+        <span></span><span></span><span></span> {# Agrupa texto o elementos inline sin iniciar un bloque; sus clases conectan con la presentación CSS. #}
+      </button> {# Cierra el botón para mantener la anidación del DOM y el alcance de sus estilos. #}
+      <ul class="navbar__menu" id="navMenu"> {# Agrupa elementos de lista; su id o clase permite organizar el menú mediante CSS y JavaScript. #}
+        <li><a href="{% url 'inicio' %}">Inicio</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+        <li><a href="{% url 'nosotros' %}">Nosotros</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+        <li><a href="{% url 'sucursales' %}">Sucursales</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+        <li><a href="{% url 'contacto' %}" class="active">Contacto</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+      </ul> {# Cierra el lista para mantener la anidación del DOM y el alcance de sus estilos. #}
+    </nav> {# Cierra el navegación para mantener la anidación del DOM y el alcance de sus estilos. #}
+  </header> {# Cierra el encabezado del sitio para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+  <main> {# Identifica el contenido principal de esta página para navegación semántica y accesibilidad. #}
+    <section class="section"> {# Agrupa un tema de la página; las clases controlan separación, fondo y presentación de esta sección. #}
+      <div class="container"> {# Limita y centra el contenido con container; las demás clases ajustan su distribución dentro de esta sección. #}
+        <div class="section__head"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+          <h1>Hablemos</h1> {# Presenta el título principal de la página y su nivel superior en la jerarquía de encabezados. #}
+          <p>Escríbenos por el formulario, WhatsApp o correo. Si tu consulta es sobre un local en particular, cuéntanos cuál para responderte más rápido.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+        </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+        <div class="contact-layout"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+          <div class="form-card"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+            <div class="form-feedback" id="formFeedback" role="status" aria-live="polite"> {# Reserva el aviso de validación; id enlaza con JavaScript, role=status y aria-live anuncian sus cambios sin interrumpir. #}
+              <span aria-hidden="true">✔</span> {# Muestra un símbolo decorativo que aria-hidden excluye de la lectura accesible del mensaje. #}
+              <span>Demostración: los campos son válidos. El formulario todavía no envía mensajes.</span> {# Agrupa texto o elementos inline sin iniciar un bloque; sus clases conectan con la presentación CSS. #}
+            </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+            <form id="contactForm" novalidate> {# Identifica el formulario mediante contactForm; novalidate permite mostrar los mensajes personalizados de validación JavaScript. #}
+              <div class="field" id="fieldNombre"> {# Agrupa etiqueta, control y mensaje de error para que closest encuentre el campo y marque su estado como una unidad. #}
+                <label for="nombre">Nombre completo</label> {# Asocia la etiqueta al control nombre mediante for e id, facilitando lectura accesible y foco al pulsarla. #}
+                <input type="text" id="nombre" name="nombre" autocomplete="name" required> {# Define el control nombre; name permite localizarlo en form.elements y required declara que requiere contenido. #}
+                <div class="field__error"></div> {# Reserva el texto de error de este campo; JavaScript escribe con textContent y el CSS define su presentación. #}
+              </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+              <div class="field" id="fieldContacto"> {# Agrupa etiqueta, control y mensaje de error para que closest encuentre el campo y marque su estado como una unidad. #}
+                <label for="contactoInfo">Teléfono / WhatsApp o correo</label> {# Asocia la etiqueta al control contactoInfo mediante for e id, facilitando lectura accesible y foco al pulsarla. #}
+                <input type="text" id="contactoInfo" name="contacto" placeholder="+56 9 1234 5678 o tucorreo@ejemplo.com" required> {# Define el control contacto; name permite localizarlo en form.elements y required declara que requiere contenido. #}
+                <div class="field__error"></div> {# Reserva el texto de error de este campo; JavaScript escribe con textContent y el CSS define su presentación. #}
+              </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+              <div class="field" id="fieldSucursal"> {# Agrupa etiqueta, control y mensaje de error para que closest encuentre el campo y marque su estado como una unidad. #}
+                <label for="sucursal">Sucursal de interés</label> {# Asocia la etiqueta al control sucursal mediante for e id, facilitando lectura accesible y foco al pulsarla. #}
+                <select id="sucursal" name="sucursal" required> {# Define el control de sucursal; su name enlaza con la regla JavaScript y cada option aporta un valor seleccionable. #}
+                  <option value="">Selecciona un local</option> {# Añade una opción al select; value es el dato del control y el texto es la etiqueta visible. #}
+                  <option value="delfines">Minimarket Los Delfines</option> {# Añade una opción al select; value es el dato del control y el texto es la etiqueta visible. #}
+                  <option value="lobos">Minimarket Los Lobos 1836</option> {# Añade una opción al select; value es el dato del control y el texto es la etiqueta visible. #}
+                  <option value="botilleria">Botillería Salas</option> {# Añade una opción al select; value es el dato del control y el texto es la etiqueta visible. #}
+                </select> {# Cierra el lista de selección para mantener la anidación del DOM y el alcance de sus estilos. #}
+                <div class="field__error"></div> {# Reserva el texto de error de este campo; JavaScript escribe con textContent y el CSS define su presentación. #}
+              </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+              <div class="field" id="fieldMensaje"> {# Agrupa etiqueta, control y mensaje de error para que closest encuentre el campo y marque su estado como una unidad. #}
+                <label for="mensaje">Mensaje</label> {# Asocia la etiqueta al control mensaje mediante for e id, facilitando lectura accesible y foco al pulsarla. #}
+                <textarea id="mensaje" name="mensaje" required></textarea> {# Permite escribir el mensaje en varias líneas; su name enlaza con la regla de longitud mínima de JavaScript. #}
+                <div class="field__error"></div> {# Reserva el texto de error de este campo; JavaScript escribe con textContent y el CSS define su presentación. #}
+              </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+              <button type="submit" class="btn btn-primary btn-block">Enviar mensaje</button> {# Dispara el evento submit del formulario; el JavaScript de esta demostración cancela el envío y valida los controles. #}
+            </form> {# Cierra el formulario para mantener la anidación del DOM y el alcance de sus estilos. #}
+          </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+          <aside class="info-card"> {# Agrupa información de contacto complementaria al formulario y permite darle un estilo independiente. #}
+            <h2>Otras formas de contacto</h2> {# Introduce una sección subordinada al título principal para estructurar el contenido. #}
+            <div class="info-card__item"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+              <h3>WhatsApp</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+              <p><a href="https://wa.me/56956726971">+56 9 5672 6971</a></p> {# Abre WhatsApp con el número comercial publicado por el almacén y el minimarket; navegar al enlace no envía un mensaje automáticamente. #}
+              <p>Contacto publicado por Almacén Mis Reinas y Minimarket Mis Reinas.</p> {# Identifica los locales que publican ese teléfono, sin atribuirlo a la botillería. #}
+              <p><a href="mailto:caterinvenegas.s@hotmail.com">caterinvenegas.s@hotmail.com</a></p> {# Abre el cliente de correo con la dirección comercial publicada por el almacén; el usuario decide si envía el mensaje. #}
+            </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+            <div class="info-card__item"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+              <h3>Minimarket Los Delfines</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+              <p><a href="https://www.facebook.com/almacenmisreinas">Almacén Mis Reinas en Facebook</a></p> {# Permite consultar novedades en la página pública usada como fuente de este local. #}
+              <p>Los Delfines 1850, Los Lobos Viejos, Talcahuano.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+            </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+            <div class="info-card__item"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+              <h3>Minimarket Los Lobos 1836</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+              <p><a href="https://www.facebook.com/profile.php?id=61594394111365">Minimarket Mis Reinas en Facebook</a></p> {# Enlaza la página específica del minimarket para evitar confundir sus datos con otra sucursal. #}
+              <p>Avenida Los Lobos 1836, Talcahuano.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+            </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+            <div class="info-card__item"> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+              <h3>Botillería Salas</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+              <p><a href="https://www.facebook.com/profile.php?id=61570976522580">Botillería Mis Reinas en Facebook</a></p> {# Conserva el nombre del letrero e identifica el nombre utilizado en su página de Facebook. #}
+              <p>Avenida Los Lobos 813, Concepción, Chile.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+            </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+          </aside> {# Cierra el información complementaria para mantener la anidación del DOM y el alcance de sus estilos. #}
+        </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+      </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+    </section> {# Cierra el sección para mantener la anidación del DOM y el alcance de sus estilos. #}
+  </main> {# Cierra el contenido principal para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+  <footer class="site-footer"> {# Agrupa información general, navegación secundaria y ubicación al final del contenido. #}
+    <div class="container footer-grid"> {# Limita y centra el contenido con container; las demás clases ajustan su distribución dentro de esta sección. #}
+      <div> {# Agrupa elementos relacionados dentro del layout para mantener una estructura DOM coherente. #}
+        <h3>Mis Reinas</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+        <p>Minimarkets y botillería familiar atendiendo el sector de Los Lobos Viejos desde hace años, en Talcahuano y Concepción.</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+      </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+      <div> {# Agrupa elementos relacionados dentro del layout para mantener una estructura DOM coherente. #}
+        <h3>Navegación</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+        <ul> {# Agrupa elementos de lista; su id o clase permite organizar el menú mediante CSS y JavaScript. #}
+          <li><a href="{% url 'inicio' %}">Inicio</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+          <li><a href="{% url 'nosotros' %}">Nosotros</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+          <li><a href="{% url 'sucursales' %}">Sucursales</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+          <li><a href="{% url 'contacto' %}">Contacto</a></li> {# Resuelve un nombre registrado en urls.py; evita depender de nombres de archivos HTML. #}
+        </ul> {# Cierra el lista para mantener la anidación del DOM y el alcance de sus estilos. #}
+      </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+      <div> {# Agrupa elementos relacionados dentro del layout para mantener una estructura DOM coherente. #}
+        <h3>Ubicación</h3> {# Titula una tarjeta o grupo dentro de una sección y mantiene la jerarquía de encabezados. #}
+        <p>Los Delfines 1850 · Avenida Los Lobos 1836 · Av. Los Lobos 813<br>Talcahuano / Concepción, Chile</p> {# Presenta texto descriptivo fijo del frontend; las clases ajustan su tipografía y separación. #}
+      </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+    </div> {# Cierra el contenedor para mantener la anidación del DOM y el alcance de sus estilos. #}
+    <div class="footer-bottom">© 2026 Mis Reinas &amp; Botillería Salas. Proyecto académico de Desarrollo Backend.</div> {# Agrupa elementos relacionados; sus clases enlazan con reglas CSS de distribución, espaciado o presentación. #}
+  </footer> {# Cierra el pie de página para mantener la anidación del DOM y el alcance de sus estilos. #}
+
+  <script src="{% static 'contact/js/main.js' %}"></script> {# Carga el JS propio de la app al final del body, después de construir el DOM. #}
+</body> {# Cierra el cuerpo visible para mantener la anidación del DOM y el alcance de sus estilos. #}
+</html> {# Cierra el documento HTML para mantener la anidación del DOM y el alcance de sus estilos. #}
