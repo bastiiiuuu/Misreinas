@@ -1,0 +1,83 @@
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="es-CL">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ofertas | Mis Reinas &amp; Botillería Salas</title>
+  <meta name="description" content="Ofertas por categoría y sucursal de Mis Reinas.">
+  <link rel="stylesheet" href="{% static 'ofertas/css/styles.css' %}">
+</head> 
+<body>
+
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Navegación principal">
+      <a href="{% url 'inicio' %}" class="navbar__brand">
+        <img src="https://i.postimg.cc/MGhw2NCr/logo.jpg" alt="Escudo Mis Reinas, dos leones sosteniendo una corona" class="navbar__logo">
+        <span>Mis Reinas</span>
+      </a> 
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button> 
+      <ul class="navbar__menu" id="navMenu">
+        <li><a href="{% url 'inicio' %}">Inicio</a></li>
+        <li><a href="{% url 'nosotros' %}">Nosotros</a></li>
+        <li><a href="{% url 'ofertas' %}" class="active">Ofertas</a></li>
+        <li><a href="{% url 'sucursales' %}">Sucursales</a></li>
+        <li><a href="{% url 'contacto' %}">Contacto</a></li>
+      </ul> 
+    </nav> 
+  </header>
+
+  <main>
+  <p class="container"><a href="{% url 'api-demo' %}">Explorar catálogo mediante la API</a></p>
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <h1>Ofertas de nuestras sucursales</h1>
+          <p>Selecciona una etiqueta o un local para encontrar una promoción.</p>
+        </div>
+
+        {% include 'ofertas/_filtros.html' %}
+
+        {% include 'ofertas/_ofertas.html' %}
+
+      </div> 
+    </section> 
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>Mis Reinas</h3>
+        <p>Minimarkets y botillería familiar atendiendo el sector de Los Lobos Viejos desde hace años, en Talcahuano y Concepción.</p>
+      </div> 
+      <div>
+        <h3>Navegación</h3>
+        <ul>
+          <li><a href="{% url 'inicio' %}">Inicio</a></li>
+          <li><a href="{% url 'nosotros' %}">Nosotros</a></li>
+          <li><a href="{% url 'ofertas' %}" class="active">Ofertas</a></li>
+          <li><a href="{% url 'sucursales' %}">Sucursales</a></li>
+          <li><a href="{% url 'contacto' %}">Contacto</a></li>
+        </ul> 
+      </div> 
+      <div>
+        <h3>Ubicación</h3>
+        <p>{{ total_locales }} locales a tu servicio.</p>
+        {% for local in locales_del_negocio %}
+        <p>{{ local.nombre }}<br>{{ local.direccion }}</p>
+        {% empty %}
+        <p>Consulta pronto nuestras ubicaciones.</p>
+        {% endfor %}
+      </div> 
+    </div> 
+    <div class="footer-bottom">© 2026 Mis Reinas &amp; Botillería Salas. Proyecto académico de Desarrollo Backend.</div>
+  </footer> 
+
+  <script src="{% static 'ofertas/js/main.js' %}"></script>
+</body> 
+</html> 

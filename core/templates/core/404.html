@@ -1,0 +1,61 @@
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="es-CL">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página no encontrada | Mis Reinas &amp; Botillería Salas</title>
+  <meta name="description" content="No encontramos esta página o filtro. Vuelve a las ofertas de Mis Reinas.">
+  <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'core/css/404.css' %}">
+</head> 
+<body class="error-page">
+
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Navegación principal">
+      <a href="{% url 'inicio' %}" class="navbar__brand">
+        <img src="https://i.postimg.cc/MGhw2NCr/logo.jpg" alt="Escudo Mis Reinas, dos leones sosteniendo una corona" class="navbar__logo">
+        <span>Mis Reinas</span>
+      </a> 
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button> 
+      <ul class="navbar__menu" id="navMenu">
+        <li><a href="{% url 'inicio' %}">Inicio</a></li>
+        <li><a href="{% url 'nosotros' %}">Nosotros</a></li>
+        <li><a href="{% url 'ofertas' %}">Ofertas</a></li>
+        <li><a href="{% url 'sucursales' %}" >Sucursales</a></li>
+        <li><a href="{% url 'contacto' %}">Contacto</a></li>
+      </ul> 
+    </nav> 
+  </header>
+
+  <main class="error-shell">
+    <section class="error-hero" aria-labelledby="error-title">
+      <div class="error-copy">
+        <span class="error-label">ERROR 404</span>
+        <h1 id="error-title">¡Ups! <span>Este pasillo no existe.</span></h1>
+        <p>El enlace o filtro que buscas no está disponible. Volvamos a encontrar una buena oferta.</p>
+        <div class="error-actions">
+          <a class="btn" href="{% url 'ofertas' %}">Ver todas las ofertas <span aria-hidden="true">↗</span></a>
+          <a class="error-home" href="{% url 'inicio' %}"><span aria-hidden="true">←</span> Ir a Inicio</a>
+        </div> 
+      </div> 
+      <figure class="error-art" aria-hidden="true">
+        <div class="error-art__window">
+          <img class="error-art__image" src="{% static 'core/img/error-404.jpg' %}" alt="" width="3000" height="2000" fetchpriority="high">
+        </div> 
+      </figure> 
+    </section> 
+  </main>
+
+  <footer class="error-footer">
+    <p>Mis Reinas &amp; Botillería Salas</p>
+    <p>Ilustración de <a href="https://www.freepik.com/">Freepik</a></p>
+  </footer> 
+  <script src="{% static 'core/js/main.js' %}"></script>
+</body> 
+</html> 

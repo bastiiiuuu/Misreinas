@@ -1,0 +1,55 @@
+
+
+<div class="card-grid offers-grid" id="catalogo">
+  {% for oferta in page_obj %}
+  <article class="card offer-card">
+
+
+    {% if oferta.imagen %}
+    <img src="{{ oferta.imagen.url }}" alt="{{ oferta.nombre }}" class="card__img offer-card__image" loading="lazy">
+    {% else %}
+    <p>Imagen no disponible.</p>
+    {% endif %}
+    <div class="card__body">
+      <span class="card__tag">Oferta</span>
+      <p class="offer-local">{{ oferta.sucursal.nombre }}</p>
+      <div class="offer-tags">
+        {% for etiqueta in oferta.categorias.all %}
+        <a href="{% url 'ofertas' %}?categoria={{ etiqueta.slug|urlencode }}{% if sucursal_actual %}&amp;sucursal={{ sucursal_actual.pk }}{% endif %}">{{ etiqueta.nombre }}</a>
+        {% endfor %}
+      </div> 
+      <h3>{{ oferta.nombre }}</h3>
+      {% if oferta.precio %}
+      <p class="offer-card__price">$ {{ oferta.precio|floatformat:"0g" }}</p>
+      {% else %}
+      <p class="offer-card__price">Consultar precio</p>
+      {% endif %}
+      <p class="card__meta">{{ oferta.descripcion|urlize|linebreaksbr }}</p>
+    </div> 
+  </article> 
+  {% empty %}
+  <p>No hay ofertas para esta selección.</p>
+  {% endfor %}
+</div>
+
+<nav aria-label="Paginación de ofertas">
+  <ul class="pagination">
+
+
+    {% if page_obj.has_previous %}
+    <li><a class="page-link" href="{% url 'ofertas' %}?{% if filtro_query %}{{ filtro_query }}&amp;{% endif %}page=1#catalogo">Primera</a></li>
+    <li><a class="page-link" href="{% url 'ofertas' %}?{% if filtro_query %}{{ filtro_query }}&amp;{% endif %}page={{ page_obj.previous_page_number }}#catalogo" rel="prev">Anterior</a></li>
+    {% else %}
+    <li><span class="page-link disabled" aria-disabled="true">Anterior</span></li>
+    {% endif %}
+    <li><span class="page-link current" aria-current="page">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span></li>
+
+
+    {% if page_obj.has_next %}
+    <li><a class="page-link" href="{% url 'ofertas' %}?{% if filtro_query %}{{ filtro_query }}&amp;{% endif %}page={{ page_obj.next_page_number }}#catalogo" rel="next">Siguiente</a></li>
+    <li><a class="page-link" href="{% url 'ofertas' %}?{% if filtro_query %}{{ filtro_query }}&amp;{% endif %}page={{ page_obj.paginator.num_pages }}#catalogo">Última</a></li>
+    {% else %}
+    <li><span class="page-link disabled" aria-disabled="true">Siguiente</span></li>
+    {% endif %}
+  </ul> 
+</nav> 

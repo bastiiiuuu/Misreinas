@@ -451,3 +451,6 @@ button { font-family: inherit; cursor: pointer; }
   html { scroll-behavior: auto; }
   .btn, .navbar__menu, .nav-toggle span { transition: none; }
 }
+
+.form-summary, .errorlist { color: #a50021; }
+.field p.field__error { margin: .4rem 0; }

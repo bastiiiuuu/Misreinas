@@ -1,0 +1,22 @@
+
+
+<nav class="filter-panel" aria-label="Filtrar ofertas">
+  <h2>Categorías</h2>
+  <div class="filter-tags">
+    <a class="filter-tag{% if not categoria_actual %} is-selected{% endif %}" href="{% url 'ofertas' %}{% if sucursal_actual %}?sucursal={{ sucursal_actual.pk }}{% endif %}">Todas</a>
+    {% for categoria in categorias %}
+    <a class="filter-tag{% if categoria_actual.pk == categoria.pk %} is-selected{% endif %}" href="{% url 'ofertas' %}?categoria={{ categoria.slug|urlencode }}{% if sucursal_actual %}&amp;sucursal={{ sucursal_actual.pk }}{% endif %}">{{ categoria.nombre }}</a>
+    {% endfor %}
+  </div> 
+  <h2>Sucursales</h2>
+  <div class="filter-tags">
+    <a class="filter-tag{% if not sucursal_actual %} is-selected{% endif %}" href="{% url 'ofertas' %}{% if categoria_actual %}?categoria={{ categoria_actual.slug|urlencode }}{% endif %}">Todos los locales</a>
+    {% for local in sucursales_filtro %}
+    <a class="filter-tag{% if sucursal_actual.pk == local.pk %} is-selected{% endif %}" href="{% url 'ofertas' %}?sucursal={{ local.pk }}{% if categoria_actual %}&amp;categoria={{ categoria_actual.slug|urlencode }}{% endif %}">{{ local.nombre }}</a>
+    {% endfor %}
+  </div> 
+  <p>{{ page_obj.paginator.count }} ofertas encontradas.</p>
+  {% if categoria_actual or sucursal_actual %}
+  <a href="{% url 'ofertas' %}">Quitar todos los filtros</a>
+  {% endif %}
+</nav> 
