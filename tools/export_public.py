@@ -61,6 +61,10 @@ def build(output):
             media['/media/'+relative.as_posix()]=PREFIX+destination.as_posix()
         logo=ROOT/'public_site/logo.jpg'
         if logo.exists():shutil.copy2(logo,output/'logo.jpg')
+        hero=ROOT/'public_site/hero.jpg'
+        if hero.exists():
+            with Image.open(hero) as image:
+                image=image.convert('RGB');image.thumbnail((1800,1800));image.save(output/'hero.webp',quality=87)
         static=set();paths=[]
         def rewrite(match):
             name,value=match.group(1),html.unescape(match.group(2))
@@ -105,7 +109,11 @@ def build(output):
         for relative in static:
             source=find(relative)
             if not source:raise SystemExit('Falta recurso estático: '+relative)
-            destination=output/'static'/relative;destination.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(source,destination)
+            destination=output/'static'/relative;destination.parent.mkdir(parents=True,exist_ok=True)
+            if destination.suffix=='.css' and hero.exists():
+                css=Path(source).read_text(encoding='utf-8').replace('https://i.postimg.cc/9f42kCnn/segundo-M2.jpg',PREFIX+'hero.webp')
+                destination.write_text(css,encoding='utf-8')
+            else:shutil.copy2(source,destination)
         connection.close()
     (output/'.nojekyll').touch()
     (output/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: https://bastiiiuuu.github.io/Misreinas/sitemap.xml\n',encoding='utf-8')
