@@ -1,0 +1,221 @@
+{
+  "sucursales_sucursal": [
+    {
+      "id": 8,
+      "nombre": "Botillería Salas",
+      "direccion": "Avenida Los Lobos 813, Concepción, Chile.",
+      "descripcion": "En Facebook: Botillería Mis Reinas; la fachada conserva el letrero Botillería Salas. Ofrece vinos, bebidas y otros licores.\nHorario publicado en Facebook: lunes a jueves, sábado y domingo, 09:00 a 01:00 del día siguiente; viernes, 09:00 a 03:00 del día siguiente.\nFacebook indica que ese horario se actualizó hace aproximadamente dos años; confirma su vigencia antes de visitar.\nFacebook: https://www.facebook.com/profile.php?id=61570976522580",
+      "imagen": "sucursales/botilleria_OyPFoqs.jpg"
+    },
+    {
+      "id": 9,
+      "nombre": "Minimarket Los Lobos Viejos",
+      "direccion": "Avenida Los Lobos 1836, Talcahuano.",
+      "descripcion": "En Facebook: Minimarket Mis Reinas. Abarrotes, verduras, licores y servicio CajaVecina.\nAcepta pagos con tarjeta y efectivo.\nTeléfono y WhatsApp: +56 9 5672 6971.\nConsulta el horario vigente directamente con el local.\nFacebook: https://www.facebook.com/profile.php?id=61594394111365",
+      "imagen": "sucursales/lobos_Pf1uC5T.jpg"
+    },
+    {
+      "id": 10,
+      "nombre": "Minimarket Los Delfines",
+      "direccion": "Los Delfines 1850, Los Lobos Viejos, Talcahuano.",
+      "descripcion": "En Facebook: Almacén Mis Reinas. Negocio familiar con carnes, congelados, helados, frutas, verduras, pan, abarrotes, artículos de aseo, lácteos y cecinas.\nTeléfono y WhatsApp: +56 9 5672 6971.\nCorreo de contacto publicado: caterinvenegas.s@hotmail.com\nConsulta el horario vigente directamente con el local.\nFacebook: https://www.facebook.com/almacenmisreinas",
+      "imagen": "sucursales/delfines_lengNUH.jpg"
+    }
+  ],
+  "categorias_categoria": [
+    {
+      "id": 1,
+      "nombre": "Lácteos",
+      "slug": "lacteos"
+    },
+    {
+      "id": 2,
+      "nombre": "Huevos",
+      "slug": "huevos"
+    },
+    {
+      "id": 3,
+      "nombre": "Carnes",
+      "slug": "carnes"
+    },
+    {
+      "id": 4,
+      "nombre": "Bebidas",
+      "slug": "bebidas"
+    },
+    {
+      "id": 5,
+      "nombre": "Desayuno",
+      "slug": "desayuno"
+    },
+    {
+      "id": 6,
+      "nombre": "Despensa",
+      "slug": "despensa"
+    }
+  ],
+  "ofertas_oferta": [
+    {
+      "id": 1,
+      "nombre": "Stella Artois",
+      "descripcion": "Stella Artois no retornable por $1.000 la unidad.",
+      "precio": 1000,
+      "imagen": "ofertas/stella-artois.jpg",
+      "sucursal_id": 9
+    },
+    {
+      "id": 2,
+      "nombre": "Jack Daniel's",
+      "descripcion": "Promoción de dos bebidas Jack Daniel's listas para servir por $3.000.",
+      "precio": 3000,
+      "imagen": "ofertas/jack-daniels.jpg",
+      "sucursal_id": 9
+    },
+    {
+      "id": 3,
+      "nombre": "Flanes Colún",
+      "descripcion": "Promoción de tres flanes por $1.000.",
+      "precio": 1000,
+      "imagen": "ofertas/flanes.jpg",
+      "sucursal_id": 10
+    },
+    {
+      "id": 4,
+      "nombre": "Yogur familiar Los Alerces",
+      "descripcion": "Promoción de 12 yogures batidos Los Alerces por $2.290.",
+      "precio": 2290,
+      "imagen": "ofertas/yogur-marzo.jpg",
+      "sucursal_id": 10
+    },
+    {
+      "id": 5,
+      "nombre": "Trutro ala de pollo",
+      "descripcion": "Trutro ala de pollo por $3.690 el kilo.",
+      "precio": 3690,
+      "imagen": "ofertas/trutro-ala.jpg",
+      "sucursal_id": 10
+    },
+    {
+      "id": 6,
+      "nombre": "Trutro largo de pollo",
+      "descripcion": "Trutro largo de pollo por $2.490 el kilo.",
+      "precio": 2490,
+      "imagen": "ofertas/trutro-largo.jpg",
+      "sucursal_id": 10
+    },
+    {
+      "id": 7,
+      "nombre": "Huevos extra",
+      "descripcion": "Huevos extra a granel por $300 cada uno.",
+      "precio": 300,
+      "imagen": "ofertas/huevos-granel.jpg",
+      "sucursal_id": 10
+    },
+    {
+      "id": 8,
+      "nombre": "Yogur familiar Los Alerces",
+      "descripcion": "Pack familiar Los Alerces de 12 yogures por $2.690.",
+      "precio": 2690,
+      "imagen": "ofertas/yogur-julio.jpg",
+      "sucursal_id": 10
+    },
+    {
+      "id": 9,
+      "nombre": "Bandeja de huevos",
+      "descripcion": "Promoción de bandeja de huevos por $5.500.",
+      "precio": 5500,
+      "imagen": "ofertas/bandeja-huevos.jpg",
+      "sucursal_id": 10
+    },
+    {
+      "id": 10,
+      "nombre": "Mantequilla Los Alerces",
+      "descripcion": "Mantequilla Los Alerces de 250 g por $2.500.",
+      "precio": 2500,
+      "imagen": "ofertas/mantequilla.jpg",
+      "sucursal_id": 10
+    }
+  ],
+  "ofertas_oferta_categorias": [
+    {
+      "id": 1,
+      "oferta_id": 10,
+      "categoria_id": 1
+    },
+    {
+      "id": 2,
+      "oferta_id": 10,
+      "categoria_id": 5
+    },
+    {
+      "id": 3,
+      "oferta_id": 9,
+      "categoria_id": 2
+    },
+    {
+      "id": 4,
+      "oferta_id": 9,
+      "categoria_id": 5
+    },
+    {
+      "id": 5,
+      "oferta_id": 8,
+      "categoria_id": 1
+    },
+    {
+      "id": 6,
+      "oferta_id": 8,
+      "categoria_id": 5
+    },
+    {
+      "id": 7,
+      "oferta_id": 7,
+      "categoria_id": 2
+    },
+    {
+      "id": 8,
+      "oferta_id": 7,
+      "categoria_id": 5
+    },
+    {
+      "id": 9,
+      "oferta_id": 6,
+      "categoria_id": 3
+    },
+    {
+      "id": 10,
+      "oferta_id": 5,
+      "categoria_id": 3
+    },
+    {
+      "id": 11,
+      "oferta_id": 4,
+      "categoria_id": 1
+    },
+    {
+      "id": 12,
+      "oferta_id": 4,
+      "categoria_id": 5
+    },
+    {
+      "id": 13,
+      "oferta_id": 3,
+      "categoria_id": 1
+    },
+    {
+      "id": 14,
+      "oferta_id": 3,
+      "categoria_id": 5
+    },
+    {
+      "id": 15,
+      "oferta_id": 2,
+      "categoria_id": 4
+    },
+    {
+      "id": 16,
+      "oferta_id": 1,
+      "categoria_id": 4
+    }
+  ]
+}

@@ -12,3 +12,6 @@ media/
 staticfiles/
 *.sqlite3
 *.sqlite3-*
+public-build/
+!public_site/media/
+!public_site/media/**

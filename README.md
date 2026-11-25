@@ -1,5 +1,7 @@
 # Mis Reinas
 
+Sitio público: https://bastiiiuuu.github.io/Misreinas/
+
 Proyecto académico de una web comercial con Django: catálogo de ofertas, categorías, sucursales, filtros combinables, paginación y panel de administración. La versión del repositorio integra la base más avanzada del proyecto local y una API JSON de consulta.
 
 No acredita una relación laboral con el comercio ni procesa compras o pagos. El formulario de contacto valida datos en el servidor y muestra una confirmación de demostración: no envía correos ni almacena consultas.
@@ -79,3 +81,14 @@ Las páginas conservan referencias comerciales y material del proyecto académic
 
 Consulta [la guía del código](docs/guia-codigo.md) para estudiar el recorrido de una solicitud y preparar una demostración.
 
+
+## Sitio público en GitHub Pages
+
+La edición pública presenta Inicio, Nosotros, catálogo, sucursales y contacto. Conserva filtros combinables y paginación mediante páginas HTML generadas desde Django. No publica la API ni el Admin, y el contacto enlaza canales públicos en lugar de simular un envío. El backend original se conserva para ejecución Python.
+
+```sh
+python tools/export_public.py
+python tools/check_public.py
+```
+
+El exportador crea una base en memoria con los campos públicos de `public_site/catalog.json`, renderiza las plantillas y copia únicamente imágenes y recursos referenciados. Los datos corresponden al catálogo del proyecto; no incluyen cuentas, sesiones ni credenciales. El workflow de Pages publica `public-build`. Para actualizar productos o imágenes se revisan los archivos de `public_site` y se vuelve a generar. El catálogo público no lleva registros ficticios de seed_demo. Confirma precios y disponibilidad con el local.
